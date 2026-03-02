@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuniAndes | Gestión Integral de Monitoreos Ambientales</title>
+    <meta name="description" content="SuniAndes - Gestión integral y control técnico de monitoreos ambientales en Perú. Reducimos riesgos y entregamos información lista para fiscalizaciones.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --blue-dark: #1B4332;
+            --blue-mid: #2D6A4F;
+            --blue-light: #40916C;
+            --gray-900: #14332a;
+            --gray-700: #3d3d56;
+            --gray-500: #6b7280;
+            --gray-300: #d1d5db;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+            --green-accent: #52B788;
+            --green-light: #74C69D;
+            --white: #ffffff;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            color: var(--gray-700);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul { list-style: none; }
+
+        /* ========== HEADER ========== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-300);
+            transition: box-shadow 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            letter-spacing: 0.02em;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue-dark);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue-dark);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-nav {
+            background: var(--blue-dark);
+            color: var(--white) !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-nav::after { display: none; }
+
+        .btn-nav:hover {
+            background: var(--blue-mid);
+            color: var(--white) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--blue-dark);
+            cursor: pointer;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--blue-dark);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(27, 67, 50, 0.88) 0%, rgba(45, 106, 79, 0.82) 50%, rgba(27, 67, 50, 0.90) 100%),
+                url('bg-monitoring-1.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 5%;
+            max-width: 850px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--white);
+            color: var(--blue-dark);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========== SECTIONS COMMON ========== */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--green-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            color: var(--blue-dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ========== ABOUT ========== */
+        .about {
+            background: var(--gray-50);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--gray-300);
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--blue-light);
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            color: var(--blue-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--blue-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-top: 0.3rem;
+        }
+
+        /* ========== SERVICES ========== */
+        .services {
+            background: var(--white);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .services-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--gray-50);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--gray-300);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--blue-light);
+            transform: translateY(-4px);
+        }
+
+        .service-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .service-card p {
+            font-size: 0.92rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            padding: 0.35rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .service-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green-accent);
+        }
+
+        /* ========== DIFFERENTIALS ========== */
+        .differentials {
+            background: var(--blue-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .differentials::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(27, 67, 50, 0.92) 0%, rgba(45, 106, 79, 0.88) 50%, rgba(27, 67, 50, 0.94) 100%),
+                url('bg-monitoring-3.jpeg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .differentials .section-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .differentials .section-label {
+            color: var(--green-light);
+        }
+
+        .differentials .section-title {
+            color: var(--white);
+        }
+
+        .differentials .section-subtitle {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .diff-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .diff-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .diff-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--green-light);
+        }
+
+        .diff-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .diff-item p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+
+        .diff-right {
+            background: rgba(82, 183, 136, 0.18);
+            border: 1px solid rgba(116, 198, 157, 0.35);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .diff-right h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--green-light);
+            letter-spacing: 0.03em;
+        }
+
+        .standard-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .standard-item:last-child { border-bottom: none; }
+
+        .standard-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--green-accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(82, 183, 136, 0.4);
+        }
+
+        .standard-item span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        /* ========== CONTACT ========== */
+        .contact {
+            background: var(--gray-50);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info-block h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info-block > p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-300);
+        }
+
+        .contact-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--blue-dark);
+        }
+
+        .contact-item-text span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-item-text a,
+        .contact-item-text p {
+            font-size: 1rem;
+            color: var(--blue-dark);
+            font-weight: 500;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--blue-light);
+        }
+
+        .contact-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #25D366;
+            color: var(--white);
+            padding: 0.85rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebe57;
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--gray-300);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            transition: border-color 0.3s, color 0.3s, background 0.3s;
+        }
+
+        .social-link:hover {
+            border-color: var(--blue-dark);
+            color: var(--blue-dark);
+            background: var(--white);
+        }
+
+        .contact-cta-card {
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+            border-radius: 14px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .contact-cta-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .contact-cta-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .btn-outline-white {
+            display: inline-block;
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.3s, color 0.3s;
+            text-align: center;
+        }
+
+        .btn-outline-white:hover {
+            background: var(--white);
+            color: var(--blue-dark);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2.5rem 5%;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-inner p {
+            font-size: 0.85rem;
+        }
+
+        .footer-inner a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s;
+        }
+
+        .footer-inner a:hover {
+            color: var(--white);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem 5%;
+                gap: 1rem;
+                border-bottom: 1px solid var(--gray-300);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a::after { display: none; }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .contact-actions {
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav class="navbar">
+            <a href="#inicio" class="logo">
+                <img src="logo.png" alt="SuniAndes">
+            </a>
+            <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#inicio" onclick="closeMenu()">Inicio</a></li>
+                <li><a href="#nosotros" onclick="closeMenu()">Nosotros</a></li>
+                <li><a href="#servicios" onclick="closeMenu()">Servicios</a></li>
+                <li><a href="#diferencial" onclick="closeMenu()">Diferencial</a></li>
+                <li><a href="#contacto" class="btn-nav" onclick="closeMenu()">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECTION 1 - HERO -->
+    <section id="inicio" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-tag">Consultora Ambiental &mdash; Lima, Peru</span>
+            <h1>Gestion Integral y Control Tecnico de Monitoreos Ambientales</h1>
+            <p>Reducimos riesgos. Nos encargamos de toda la gestion de sus monitoreos y entregamos informacion lista para defender ante cualquier fiscalizacion.</p>
+            <a href="#contacto" class="btn-primary">Solicitar Consulta</a>
+        </div>
+    </section>
+
+    <!-- SECTION 2 - QUIENES SOMOS -->
+    <section id="nosotros" class="section about">
+        <div class="section-inner">
+            <span class="section-label">Quienes Somos</span>
+            <h2 class="section-title">Tu aliado técnico en monitoreo ambiental</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Somos <strong>SUNIANDES</strong>, tu aliado técnico que gestiona integralmente tus monitoreos ambientales y asegura información sólida frente a cualquier fiscalización. Asumimos la coordinación con laboratorios, validación técnica y consolidación de resultados, reduciendo la carga operativa y los riesgos para tu empresa.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-microscope"></i></div>
+                        <h4>Especializacion</h4>
+                        <p>Exclusiva en monitoreo ambiental</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Fiscalizacion</h4>
+                        <p>Entregables listos para auditorias</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-cogs"></i></div>
+                        <h4>Gestion Integral</h4>
+                        <p>Reduccion de carga operativa</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Enfoque Preventivo</h4>
+                        <p>Estrategia tecnica proactiva</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 - SERVICIOS -->
+    <section id="servicios" class="section services">
+        <div class="section-inner">
+            <div class="services-header">
+                <span class="section-label">Servicios</span>
+                <h2 class="section-title">Soluciones tecnicas para su cumplimiento ambiental</h2>
+                <p class="section-subtitle">Actuamos como su representante tecnico durante todo el proceso, desde la planificacion hasta la consolidacion de resultados.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <span class="service-number">01</span>
+                    <h3>Gestion Integral de Monitoreos Ambientales</h3>
+                    <p>Actuamos como su representante tecnico durante todo el proceso, desde la planificacion hasta la consolidacion de resultados.</p>
+                    <ul class="service-list">
+                        <li>Planificacion tecnica del servicio</li>
+                        <li>Coordinacion con laboratorios acreditados</li>
+                        <li>Supervision en campo</li>
+                        <li>Verificacion de protocolos</li>
+                        <li>Validacion de calibraciones y equipos</li>
+                    </ul>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <span class="service-number">02</span>
+                    <h3>Elaboracion de Informes Tecnicos</h3>
+                    <p>No entregamos informes extensos para archivo. Entregamos informacion clara, trazable y lista para sustentar ante cualquier fiscalizacion.</p>
+                    <ul class="service-list">
+                        <li>Evaluacion conforme a normativa vigente</li>
+                        <li>Revision tecnica detallada</li>
+                        <li>Informacion precisa y sustentada</li>
+                        <li>Redaccion clara y tecnica</li>
+                        <li>Matriz de Trazabilidad Documental</li>
+                    </ul>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <span class="service-number">03</span>
+                    <h3>Gestion y Reporte en Plataformas Oficiales</h3>
+                    <p>Garantizamos que la informacion sea consistente, trazable y tecnicamente sustentable antes de su presentacion ante la autoridad.</p>
+                    <ul class="service-list">
+                        <li>Reporte tecnico al Modulo IMA de OEFA</li>
+                        <li>Registro y declaracion en SIGERSOL</li>
+                        <li>Revision preventiva pre-reporte</li>
+                        <li>Verificacion de trazabilidad documental</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 - DIFERENCIAL -->
+    <section id="diferencial" class="section differentials">
+        <div class="section-inner">
+            <span class="section-label">Diferencial</span>
+            <h2 class="section-title">Por que elegir SuniAndes</h2>
+            <p class="section-subtitle">Nuestro trabajo no termina con la entrega del informe. Nos enfocamos en que la informacion ambiental sea clara, sustentable y defendible.</p>
+            <div class="diff-grid">
+                <div class="diff-left">
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-bullseye"></i></div>
+                        <div>
+                            <h4>Especializacion exclusiva en monitoreo ambiental</h4>
+                            <p>Enfoque tecnico especializado sin dispersar esfuerzos en otras areas.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-search"></i></div>
+                        <div>
+                            <h4>Experiencia tecnica en supervision y revision</h4>
+                            <p>Equipo con conocimiento profundo en protocolos de monitoreo y normativa.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-tasks"></i></div>
+                        <div>
+                            <h4>Gestion integral que reduce carga operativa</h4>
+                            <p>Asumimos toda la coordinacion tecnica para que usted se enfoque en su operacion.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-file-shield"></i></div>
+                        <div>
+                            <h4>Entregables disenados para fiscalizaciones reales</h4>
+                            <p>Documentacion solida, trazable y lista para cualquier revision oficial.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-chess"></i></div>
+                        <div>
+                            <h4>Enfoque preventivo y estrategico</h4>
+                            <p>Anticipamos riesgos antes de que se conviertan en observaciones o sanciones.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="diff-right">
+                    <h3>Estandar de Servicio</h3>
+                    <div class="standard-item">
+                        <div class="standard-check"><i class="fas fa-check"></i></div>
+                        <span>Respuesta a consultas en maximo 24 horas habiles</span>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-check"><i class="fas fa-check"></i></div>
+                        <span>Seguimiento continuo a laboratorios acreditados</span>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-check"><i class="fas fa-check"></i></div>
+                        <span>Entrega de informes hasta en 3 dias habiles posteriores a la recepcion de resultados completos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5 - CONTACTO -->
+    <section id="contacto" class="section contact">
+        <div class="section-inner">
+            <span class="section-label">Contacto</span>
+            <h2 class="section-title">Conversemos sobre su proyecto</h2>
+            <div class="contact-grid">
+                <div class="contact-info-block">
+                    <h3>Informacion de Contacto</h3>
+                    <p>Estamos listos para atender sus requerimientos tecnicos.</p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-item-text">
+                            <span>Correo</span>
+                            <a href="mailto:contacto@suniandes.com">contacto@suniandes.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-item-text">
+                            <span>Telefono</span>
+                            <a href="tel:+51927887485">+51 927 887 485</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-item-text">
+                            <span>Ubicacion</span>
+                            <p>Lima, Peru</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-actions">
+                        <a href="https://wa.me/51927887485?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20monitoreo%20ambiental." class="btn-whatsapp" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Escribenos por WhatsApp
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/company/suniandes/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://www.facebook.com/share/1bK5UgZcbA/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-cta-card">
+                    <h3>Gestion tecnica que protege su operacion</h3>
+                    <p>Reducimos riesgos y entregamos informacion solida, trazable y lista para cualquier fiscalizacion. Contactenos para una consulta sin compromiso.</p>
+                    <a href="mailto:contacto@suniandes.com" class="btn-outline-white">Solicitar Consulta</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; 2026 SuniAndes. Todos los derechos reservados.</p>
+            <p>Lima, Peru &middot; <a href="mailto:contacto@suniandes.com">contacto@suniandes.com</a></p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Close mobile menu
+        function closeMenu() {
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
